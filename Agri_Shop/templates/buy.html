@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Option</title>
+    <link rel="stylesheet" href="{% static 'css/buy.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Payment Option</h1>
+      <h2>Total Amount: ₹{{ total_price|floatformat:2 }}</h2>
+      <div class="qr-section">
+        <h3>Scan to Pay</h3>
+        <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+      </div>
+      <div class="btn-container">
+          <a href="{% url 'cart' %}" class="btn cancel-btn">Cancel</a>
+      </div>
+    </div>
+    <footer>
+      <p>Powered by Ravikiran Payment Gateway</p>
+    </footer>
+
+  </body>
+</html>
+

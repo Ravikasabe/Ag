@@ -1,0 +1,144 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update Users</title>
+        <link rel="stylesheet" href="{% static 'css/admin_user.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header>
+            <h1>Admin - Update Users</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url  'Admin' %} ">Admin Home</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#UserFilter_section">Filter User</a></li>
+                    <li><a href="#tableSection">Update User</a></li>
+                    <li><a href="{% url 'logout'%}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="dashboard"  style="background-color: rgba(90, 94, 97, 0.167); ">
+                <h2 style="text-align: center; color: #000000ec;font-weight: 600; font-size: 28px; text-transform: uppercase; padding-top: 30px; "  >Dashboard</h2>
+                <div class="card-container" >
+                    <div class="card">
+                        <h3>Total Users</h3>
+                        <p>{{ total_users }}</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Superuser</h3>
+                        <p>{{ total_superuser }}</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Active</h3>
+                        <p>{{ total_users }}</p>
+                    </div>
+                    <div class="card" >
+                        <h3>Total Staff</h3>
+                        <p>{{ total_staff }}</p>
+                    </div>
+                </div>
+            </section>
+            <section class="UserFilter_section" id="UserFilter_section">
+                <h2 style="text-align: center; color: #000000ec;font-weight: 600;font-size: 28px;text-transform: uppercase; margin-bottom: 10px;" >Filter</h2>
+                <div class="UserFilter" id="UserFilter">
+                    <form method="GET" class="filter" action="{% url 'user_filter' %}">
+                        {% csrf_token %}
+                        <div class="field">
+                            <input type="date" id="date_joined" name="date_joined" placeholder="join Date" value="{{ request.GET.date_joined }}">
+                        </div>
+                        <p>OR</p>
+                        <div class="field">
+                            <input type="text" id="fname" name="fname" placeholder="First Name" value="{{ request.GET.first_name }}">
+                        </div>
+                        <p>OR</p>
+                        <div class="field">
+                            <input type="text" id="lname" name="lname" placeholder="Last Name" value="{{ request.GET.last_name }}">
+                        </div>
+                        <p>OR</p>
+                        <div class="field">
+                            <input type="text" id="username" name="username" placeholder="Username" value="{{ request.GET.username }}">
+                        </div>
+                        <div class="field">
+                            <input type="email" id="email" name="email" placeholder="Email" value="{{ request.GET.email }}">
+                        </div>
+                        <p>OR</p>
+                        <div class="field">
+                            <input type="text" id="is_superuser" name="is_superuser" placeholder="Is Superuser" value="{{ request.GET.is_superuser }}">
+                        </div>
+                        <p>OR</p>
+                        <div class="field">
+                            <input type="text" id="is_staff" name="is_staff" placeholder="Is Staff" value="{{ request.GET.is_staff }}">
+                        </div>
+                        <p>OR</p>
+                        <div class="field">
+                            <input type="text" id="is_active" name="is_active" placeholder="Is Active" value="{{ request.GET.is_active }}">
+                        </div>
+                        <div class="button" style="margin-left: 20px;">
+                            <input type="submit" value="Filter Users">
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section class="user">
+                <div class="table table-bordered " style="background-color: rgba(112, 116, 120, 0.216);" >
+                    <h2 style="text-align: center; color: #000000ec;font-weight: 600;font-size: 28px;text-transform: uppercase;" >User Update</h2>
+                    <center>
+                        <table class="table table-bordered" id="tableSection" class="tableSection" style=" margin-top: 30px; margin-bottom: 30px; width: 90%;">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>username</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Is_Superuser</th>
+                                    <th>Is_Staff</th>                       
+                                    <th>Join Date</th>
+                                    <th>Is_Active</th>
+                                    <th style="text-align: center;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style=" height: 10%;">
+                                {% if users %}
+                                {% for i in users %}
+                                <tr>
+                                    <td>{{ i.id }}</td>
+                                    <td>{{ i.username }}</td>
+                                    <td>{{ i.email }}</td>
+                                    <td>{{ i.first_name }}</td>
+                                    <td>{{ i.last_name }}</td>
+                                    <td>{{ i.is_superuser }}</td>
+                                    <td>{{ i.is_staff}}</td>
+                                    <td>{{ i.date_joined }}</td>
+                                    <td>{{ i.is_active }}</td>
+                                    <td>
+                                        <center>
+                                            <a href="/user_update/{{i.id}}" class="btn btn-primary btn-sm" style="margin-right: 10px;  background-color: #ffcc00; color: black; " >Update User</a>
+                                            <a href="/user_delete/{{i.id}}" id="user_delete"  onclick="del()"  class="btn btn-danger btn-sm">Delete User</a>
+                                        </center>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="9" style="text-align: center;">No Users Found</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>    
+                    </center>
+                </div>
+            </section>
+        </main>
+        <footer class="Footer" id="footer">
+            <div >
+                <p>&copy; 2024 Bus Management System. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>

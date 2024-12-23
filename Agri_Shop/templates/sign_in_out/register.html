@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Register Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="/static/css/register.css" rel="stylesheet">
+  </head>
+  <body>
+    <a id="back" href="{% url 'main' %}">Cancel</a>
+    <div class="contact-form">
+      <img alt="" class="avatar" src="https://static.vecteezy.com/system/resources/previews/008/214/747/non_2x/agriculture-green-logo-premium-vector.jpg">
+      <h2>Register Form</h2>
+      <form  method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Username</label>
+          <input type="text" id="name" name="username" placeholder="Enter your Username" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+        <div class="form-group">
+          <label for="password1">Password</label>
+          <input type="password" id="password" name="password1" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="password2" placeholder="Confirm your password" required>
+        </div>
+        <div class="form-group">
+          <button type="submit">Register</button>
+        </div>  
+        <p class="Already">Already have an account ? <a href="{%url 'login'%}">Login here</a></p>
+      </form>
+    </div>
+</body>
+</html>

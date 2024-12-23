@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/edit_pf.css' %}">
+        <meta charset="utf-8">
+        <title>Update User</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="title-text">
+                <div class="title login">Update User</div>
+            </div>
+            <div class="user-info">
+                <label>Update User -  <span style=" font-weight: 600; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: rgb(255, 0, 0); font-size: 20px;"><strong>{{ user.username }}</strong></span></label>
+            </div>
+            <br>
+            <div class="form-container">  
+                <form method="post" class="update">
+                    {% csrf_token %}
+                    <div class="field">
+                        <label for="first_name">First Name :-</label>
+                        <input type="text" id="first_name" name="first_name"  value="{{ user.first_name }}">
+                    </div>
+                    <p class="or">OR</p>
+                    <div class="field">
+                        <label for="last_name">Last Name :-</label>
+                        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}">
+                    </div>
+                    <p class="or">OR</p>
+                    <div class="field">
+                        <label for="email">Email Add. :-</label>
+                        <input type="email" id="email" name="email" value="{{user.email}}">
+                    </div>
+                    <p class="or">OR</p>
+                    <div class="field">
+                        <label for="contact">Mobile No. :-</label>
+                        <input type="tel" id="contact" name="contact" value="{{contact_info.contact}}">
+                    </div>
+                    <p class="or">OR</p>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Update">
+                    </div>
+                    <div class="field btn">
+                        <a style="color: red; text-decoration: none;" href="{% url 'profile' user.id %}" >Back to Profile</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

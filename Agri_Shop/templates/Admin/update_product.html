@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update Product</title>
+        <link rel="stylesheet" href="{% static 'css/update_product.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Update Product</h1>
+            <h3>Updating: <span style="color: rgba(230, 4, 4, 0.942);">{{ product_instance.name }}</span></h3>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="model" value="{{ request.GET.model }}">
+                <div class="form-group">
+                    <label for="name">Product Name:</label>
+                    <input type="text" id="name" name="name" value="{{ product_instance.name }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Product Description:</label>
+                    <textarea id="description" name="description" required>{{ product_instance.description }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Product Price:</label>
+                    <input type="text" id="price" name="price" value="{{ product_instance.price }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rating">Product Ratings:- Write Between 1-5:</label>
+                    <input type="number" id="rating" name="rating" min=1 max=5 value="{{rating}}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="current_image">Current Image:</label>
+                    <input type="text" id="current_image" value="{{ product_instance.image.url }}" disabled>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">Change Image:</label>
+                    <input type="file" id="image" name="image">
+                </div>
+                
+                <div class="button-group">
+                    <input type="submit" value="Update">
+                    
+                </div>
+                <div class="button-group">
+                    
+                    <a href="{% url 'Admin' %}" class="cancel-btn">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

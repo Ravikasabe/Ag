@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/user_update.css' %}">
+        <meta charset="utf-8">
+        <title>Update User</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="title-text">
+                <div class="title login">Update User</div>
+            </div>
+            <br>
+            <div class="User">
+                <label  style="  color: red;  margin-left: 0; background-color: rgba(255, 255, 255, 0.971);  font-size: 20px; border: 1px solid black; border-radius: 3%; padding: 10px;">Update User - {{ user.username }}</label>
+            </div>
+            <br>
+        <div class="form-container">  
+            <form method="post" class="update" >
+                {% csrf_token %}
+                <div class="field">
+                    <input  type="text" id= "first_name" name="first_name" placeholder="First Name"  >
+                </div>
+                <div class="field">
+                    <input  type="text" id= "last_name" name="last_name" placeholder="Last Name" >
+                </div>
+                <div class="fields">
+                    <a href="{% url 'make_superuser' user.id %}" class="btn btn-success">Make Superuser</a>
+                    <a href="{% url 'remove_superuser' user.id %}" class="btn btn-danger">Remove Superuser</a>
+                    <a href="{% url 'make_staff' user.id %}" class="btn btn-success">Make Staff</a>
+                    <a href="{% url 'remove_staff' user.id %}" class="btn btn-danger">Remove Staff</a>
+                </div>
+                <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Update">
+                </div>
+            </form>
+            <div class="btn-cancel">
+                <a href="{% url 'Admin' %}" >Cancel</a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/products.css' %}">
+    </head>
+    <body>
+        <div class="contact-info">
+            <img src="{% static 'img/agri1.png' %}" alt="Agri Image">
+            <a href="mailto:agri@info.com">
+                <span>agri@info.com</span>
+            </a>
+        </div>
+        <nav>
+            <div style="background-color: #333; padding: 10px;">
+                <a style="color: white; margin-right: 20px;" href="#">Agri Shop</a>
+                <a style="color: white; margin-right: 20px;" href="/main">Home</a>
+                <a style="color: white; margin-right: 20px;" href="/about">About Us</a>
+                <a style="color: white; margin-right: 20px;" href="/contact">Contact Us</a>
+                <a style="color: white; margin-right: 20px;" href="#">Services</a>
+                <a style="color: white;" href="#">Products</a>
+            </div>
+        </nav>
+        <ul id="shortcut" class="shortcut" style="margin: 20px;">
+            <li><a href="#hqs">High-Quality Seeds</a></li>
+            <li><a href="#of">Organic Fertilizers</a></li>
+            <li><a href="#sp">Safe Pesticides</a></li>
+            <li><a href="#fe">Farm Equipment</a></li>
+            <li><a href="#af">Animal Feed</a></li>
+            <li><a href="#aet">Agri Electronics & Tools</a></li>
+        </ul>
+
+        <section class="SectionX">
+            <div id="hqs" class="product-container">
+                <h2>High-Quality Seeds</h2>
+                <div class="product-row">
+                    {% for seed in seeds %}
+                    <div class="product-card">
+                        <img src="{{ seed.image.url }}" alt="{{ seed.name }}">
+                        <h4>{{ seed.name }}</h4>
+                        <a id="buy" href="{% url 'buy' %}" >Buy now</a>
+                        <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ seed.price }}</strong></span></p>
+                        <p>Rating: {{ seed.rating }}</p>
+                        <a href="#">More Info</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="SectionY">
+            <div id="of" class="product-container">
+                <h2>Organic Fertilizers</h2>
+                <div class="product-row">
+                    {% for fertilizer in fertilizers %}
+                    <div class="product-card">
+                        <img src="{{ fertilizer.image.url }}" alt="{{ fertilizer.name }}">
+                        <h4>{{ fertilizer.name }}</h4>
+                        <a id="buy" href="{% url 'buy' %}" >Buy now</a>
+                        <p>Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ fertilizer.price }}</strong></span></p>
+
+                        <p>Rating: {{ fertilizer.rating }} </p>
+                        <a href="#">More Info</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="SectionX">
+            <div id="sp" class="product-container">
+                <h2>Safe Pesticides</h2>
+                <div class="product-row">
+                    {% for pesticide in pesticides %}
+                    <div class="product-card">
+                        <img src="{{ pesticide.image.url }}" alt="{{ pesticide.name }}">
+                        <h4>{{ pesticide.name }}</h4>
+                        <a id="buy" href="{% url 'buy' %}" >Buy now</a>
+
+                        <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ pesticide.price }}</strong></span></p>
+
+                        <p>Rating: {{ pesticide.rating }}</p>
+                        <a href="#">More Info</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="SectionY">
+            <div id="fe" class="product-container">
+                <h2>Farm Equipment</h2>
+                <div class="product-row">
+                    {% for equipment in equipment %}
+                    <div class="product-card">
+                        <img src="{{ equipment.image.url }}" alt="{{ equipment.name }}">
+                        <h4>{{ equipment.name }}</h4>
+                        <a id="buy" href="{% url 'buy' %}" >Buy now</a>
+
+                        <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ equipment.price }}</strong></span></p>
+
+                        <p>Rating: {{ equipment.rating }}</p>
+                        <a href="#">More Info</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="SectionX">
+            <div id="af" class="product-container">
+                <h2>Animal Feed</h2>
+                <div class="product-row">
+                    {% for feed in feed %}
+                    <div class="product-card">
+                        <img src="{{ feed.image.url }}" alt="{{ feed.name }}">
+                        <h4>{{ feed.name }}</h4>
+                        <a id="buy" href="{% url 'buy' %}" >Buy now</a>
+                        <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ feed.price }}</strong></span></p>
+
+                        <p>Rating: {{ feed.rating }}</p>
+                        <a href="#">More Info</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="SectionY">
+            <div id="aet" class="product-container">
+                <h2>Agri Electronics & Tools</h2>
+                <div class="product-row">
+                    {% for electronics_tool in electronics_tools %}
+                    <div class="product-card">
+                        <img src="{{ electronics_tool.image.url }}" alt="{{ electronics_tool.name }}">
+                        <h4>{{ electronics_tool.name }}</h4>
+                        <a id="buy" href="{% url 'buy' %}" >Buy now</a>
+                        <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ electronics_tool.price }}</strong></span></p>
+
+                        <p>Rating: {{ electronics_tool.rating }}</p>
+                        <a href="#">More Info</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Cart</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Your Cart</h1>
+            <div class="table-container">
+                {% if items_with_details %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items_with_details %}
+                            <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>₹{{ item.product.price }}</td>
+                                <td>₹{{ item.item_total }}</td>
+                                <td>
+                                    <a href="{% url 'remove_one_from_cart' item.product_type item.product.id %}" class="remove-btn">Remove One</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <h2>Total Price: ₹{{ total_price|floatformat:2 }}</h2>
+                {% else %}
+                    <p>Your cart is empty.</p>
+                {% endif %}
+            </div>
+            <div class="button-container">
+                <a href="{% url 'buy' total_price|floatformat:2 %}" class="buy-now-btn">Buy Now</a>
+                <a href="{% url 'products_user' %}" class="continue-shopping-btn">Continue Shopping</a>
+            </div>
+        </div>
+    </body>
+</html>

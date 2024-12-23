@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #b3e6ff, #e6ffe6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px; 
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #004d80;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+.table-container {
+    width: 100%;
+    max-height: 300px; 
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+thead tr {
+    background-color: #004d80;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    font-size: 16px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #00334d;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.buy-now-btn,
+.continue-shopping-btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 0 10px; 
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.buy-now-btn {
+    background-color: #009933;
+    color: white;
+}
+
+.buy-now-btn:hover {
+    background-color: #007a29;
+}
+
+.continue-shopping-btn {
+    background-color: #004d80;
+    color: white;
+}
+
+.continue-shopping-btn:hover {
+    background-color: #00334d; 
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+.remove-btn {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.remove-btn:hover {
+    background-color: #cc0000;
+}

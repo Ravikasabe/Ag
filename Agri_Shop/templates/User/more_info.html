@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Information</title>
+        <link rel="stylesheet" href="{% static 'css/more_info.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="product-info">
+                <h1>Product Information</h1>
+                <p class="product-name"><strong>Name:- </strong>{{ product.name }}</p>
+                <section style="background-color: rgba(0, 255, 255, 0.249); border-radius: 10px; padding: 20px;">
+                <p class="product-description">Description:- <br> {{ product.description }}</p>
+                </section>
+                <p class="product-rating">Rating:- {{ product.rating }}</p>
+                <div class="product-image">
+                    <img src="{{ product.image.url }}" alt="{{ product.image }}">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

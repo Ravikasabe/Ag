@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Profile</title>
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>User Profile</h1>
+            <nav>
+                <ul style="margin-top: 20px;">
+                    <li><a style="background-color: green;" href="{% url 'main_user' %}">Home</a></li>
+                    <li><a href="{% url 'products_user'%}"style="background-color: green; ">Products</a></li>
+                    <li><a style="background-color: rgb(189, 0, 0);" href="{% url 'logout'%}" >Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="profile-container">
+                <div class="profile-header">
+                    <img src="{% static 'img/logo.png' %}" alt="Profile Picture" class="profile-picture">
+                    <h2>{{ user.username }}</h2>
+                </div>
+                <div class="profile-details">
+                    <h3>Personal Information</h3>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Full Name:</strong> {{ user.first_name }} {{user.last_name}}</p>
+                    <p><strong>Joined:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+                </div>
+                <div class="profile-contact">
+                    <h3>Contact Information</h3>
+                    <p><strong>Phone:</strong>{{ contact.contact }}</p>
+                    <p><strong>ID:</strong> {{ user.id }}</p>
+                </div>
+                <div class="profile-actions" id="profile-edit">
+                    <a href="{%url 'edit_pf'%}" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

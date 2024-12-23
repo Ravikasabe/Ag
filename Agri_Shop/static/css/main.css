@@ -1,0 +1,194 @@
+
+body {
+    background-image: url("{% static 'img/background.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white; 
+}
+
+
+#nav-signin a{
+    color: #ffffff;
+}
+#nav-signin a:hover{
+    color: #f70101e9;
+}
+
+
+.featured-section {
+    background-color: rgba(0, 0, 0, 0.512); 
+    padding-bottom: 50px;
+  
+}
+
+.product-card {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+    background-color: #fffafabf;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+.product-card:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    height: 99%; 
+    
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.product-card h4 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: rgb(155, 0, 0);
+    font-weight: 600;
+}
+
+.product-card p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #121212;
+    flex-grow: 1; 
+    font-size: 15px;
+}
+
+
+.product-card .btn-primary {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    background-color: #ffbb00;
+    color: #000000;
+    border-color: #000000;
+    align-self: center; 
+}
+.product-card .btn-primary:hover {
+    background-color: #00000091;
+    color: #ffffff;
+   
+}
+
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-4 {
+    display: flex;
+    flex: 0 0 33.333%; 
+    max-width: 33.333%;
+    padding: 15px;
+}
+
+#btnn{
+    padding: 8px 14px;
+    font-size: 14px;
+    margin-top:  8px;
+    line-height: 1;
+    color: black;
+}
+#btnn:hover{
+    background-color: #4e4e4ecf;
+    color: rgb(0, 0, 0);
+}
+
+
+footer.footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 40px 0;
+}
+
+footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer .col-md-2 {
+    flex: 1;
+    min-width: 200px; 
+    margin: 0 75px; 
+    box-sizing: border-box;
+}
+
+footer h3 {
+    color: #f1c40f;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+footer p, footer ul, footer input, footer button {
+    color: #bdc3c7;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+footer .footer-icons a {
+    color: #ffffff;
+    margin-right: 10px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+footer .footer-icons a:hover {
+    color: #f1c40f;
+}
+
+footer ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: #f1c40f;
+}
+
+footer .newsletter-form input[type="email"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #34495e;
+    color: #fff;
+}
+
+footer .newsletter-form button {
+    background-color: #f1c40f;
+    color: #2c3e50;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+footer .newsletter-form button:hover {
+    background-color: #d4ac0d;
+}
+

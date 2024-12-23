@@ -1,0 +1,28 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="/static/css/login.css" rel="stylesheet">
+  </head>
+  <body>
+    <a id="back" href="{% url 'main' %}">Cancel</a>
+    <div class="contact-form">
+      <img alt="" class="avatar" src="https://static.vecteezy.com/system/resources/previews/008/214/747/non_2x/agriculture-green-logo-premium-vector.jpg">
+      <h2>Login Form</h2>
+      <form method="post" >
+        {% csrf_token %}
+        <p>Username</p><input placeholder="Username" name="username" id="username" class="username" type="text" required>
+        <p>Passwrod</p><input placeholder="Enter Password"  name="password" id="password" class="password"  type="password" required>
+        <input type="submit" value="Signin" required>
+        <p><input type="checkbox">Remember Me</p>
+      </form>
+      <div class="login_btn">
+        <p >not having account ? <a href="{% url 'register' %}">Register</a></p>
+      </div>
+    </div>
+  </body>
+</html>

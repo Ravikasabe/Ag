@@ -1,0 +1,544 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Admin_Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+                <h1>Admin Dashboard</h1>
+                <div class="user-info">
+                    <span>Welcome, Admin</span>
+                    <a href="{% url 'logout'%}" style="float: right; color: rgb(255, 0, 0);" class="logout">Logout</a>
+                </div>
+            </div>
+        </header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#Dashboard">Dashboard</a></li>
+                <li><a href="#Buses">Manage Products</a></li>
+                <li><a href="#Users">Manage Users</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <br><br>
+        <section >
+            <div class="dashboard">
+                <span>Dashboard</span>
+            </div>
+        </section>
+        <br><br>
+        <section id="Dashboard">
+            <div>
+                <center>
+                    <table class="table table-bordered" style=" width: 70%;">
+                        <thead>
+                            <tr>
+                                <th> Total High-Quality Seeds</th>
+                                <th> Total Organic Fertilizer</th>
+                                <th> Total Safe Pesticide</th>
+                                <th> Total Farm Equipment</th>
+                                <th> Total Animal Feed</th>
+                                <th> Total Agri Electronics Tool</th>
+                                <th> Total Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody style=" height: 10%;">
+                            <tr>
+                                <td>{{ Total_Seed }}</td>  
+                                <td>{{ Total_fertilizer }}</td> 
+                                <td>{{ Total_pesticide }}</td> 
+                                <td>{{ Total_equipment }}</td>
+                                <td>{{ total_feed }}</td>
+                                <td>{{ Total_tool }}</td>
+                                <td><a href="#">Report</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>    
+                </center>
+            </div>
+        </section>
+
+        <br><br>
+
+        <section class="Users" id="Users">
+            <div class="users">
+                <center>
+                    <span> Manage Users Add/Delete/Grant<span>
+                    <a href="{% url 'admin_user' %}" target="_blank" class="btn btn-warning"  style=" width: 200px; height: 40px; margin-left: 40px;">Manage Users </a>
+                </center>
+            </div>
+        </section>
+        <br><br>
+        <section >
+            <div class="Product" id="Product">
+                <a  href="{% url 'add_product' %}?model=HighQualitySeed" class="btn btn-info"  style=" color: white; width: 200px; height: 40px; margin-left: 240px;"> Add Seeds</a>
+                <span id="Product">High Quality Seeds</span>
+            </div>
+        </section>
+        <section class="ProductFilter_section" id="ProductFilter_section">
+            <div class="ProductFilter" id="ProductFilter">
+                <form method="GET" class="filter" action="{% url 'filter_seed'%}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="number" id="id" name="id" placeholder="ID" value="{{ request.GET.id }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="name" name="name" placeholder=" Product Name" value="{{ request.GET.name }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="price" name="price" placeholder="Product Price" value="{{ request.GET.price }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="rating" name="rating" placeholder="Product Rating" value="{{ request.GET.rating }}">
+                    </div>
+                    <div class="button" style="margin-left: 20px;">
+                        <input type="submit" value="Filter Product">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="Pro">
+            <div class="table table-bordered">
+                <center>
+                    <table class="table table-bordered" class="tableSection" style=" width: 95%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Image Path</th>
+                                <th>Rating</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody style=" height: 10%;">
+                            {% if HighQualitySeed %}
+                            {% for i in HighQualitySeed %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.truncated_description }}</td>
+                                <td>{{ i.price }}</td>
+                                <td>{{ i.truncated_image }}</td>
+                                <td>{{ i.rating }}</td>
+                                <td>
+                                    <center>
+                                        <a href="{% url 'product_update' 'HighQualitySeed' i.id %}" class="btn btn-primary btn-sm" style="margin-right: 10px; background-color: #ffcc00; color: black;">Update</a>
+                                        <a href="{% url 'product_delete' 'HighQualitySeed' i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    </center>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="9" style="text-align: center;">No Product found</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>    
+                </center>
+            </div>
+        </section>
+        <br><br>
+        <section >
+            <div class="Product" id="Product">
+                <a href="{% url 'add_product' %}?model=OrganicFertilizer" class="btn btn-info" style="color: white; width: 200px; height: 40px; margin-left: 240px;">Add Fertilizer</a>
+                <span id="Product">Organic Fertilizer</span>
+            </div>
+        </section>
+        <section class="ProductFilter_section" id="ProductFilter_section">
+            <div class="ProductFilter" id="ProductFilter">
+                <form method="GET" class="filter" action="{% url 'filter_Fertilizer' %}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="number" id="id" name="id" placeholder="ID" value="{{ request.GET.id }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="name" name="name" placeholder=" Product Name" value="{{ request.GET.name }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="price" name="price" placeholder="Product Price" value="{{ request.GET.price }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="rating" name="rating" placeholder="Product Rating" value="{{ request.GET.rating }}">
+                    </div>
+                    <div class="button" style="margin-left: 20px;">
+                        <input type="submit" value="Filter Product">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="Pro">
+            <div class="table table-bordered">
+                <center>
+                    <table class="table table-bordered" class="tableSection" style=" width: 95%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Image Path</th>
+                                <th>Rating</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody style=" height: 10%;">
+                            {% if OrganicFertilizer %}
+                            {% for i in OrganicFertilizer %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.truncated_description }}</td>
+                                <td>{{ i.price }}</td>
+                                <td>{{ i.truncated_image }}</td>
+                                <td>{{ i.rating }}</td>
+                                <td>
+                                    <center>
+                                        <a href="{% url 'product_update' 'OrganicFertilizer' i.id %}" class="btn btn-primary btn-sm" style="margin-right: 10px; background-color: #ffcc00; color: black;">Update</a>
+                                        <a href="{% url 'product_delete' 'OrganicFertilizer' i.id %}" class="btn btn-danger btn-sm">Delete</a>                                     
+                                    </center>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="9" style="text-align: center;">No Product found</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>    
+                </center>
+            </div>
+        </section>
+        <br><br>
+        <section >
+            <div class="Product" id="Product">
+                <a href="{% url 'add_product' %}?model=SafePesticide" class="btn btn-info"  style=" color: white; width: 200px; height: 40px; margin-left: 240px;">Add Pesticide</a>
+                <span id="Product">Safe Pesticide</span>
+            </div>
+        </section>
+        <section class="ProductFilter_section" id="ProductFilter_section">
+            <div class="ProductFilter" id="ProductFilter">
+                <form method="GET" class="filter" action="{% url 'filter_pesticide'%}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="number" id="id" name="id" placeholder="ID" value="{{ request.GET.id }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="name" name="name" placeholder=" Product Name" value="{{ request.GET.name }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="price" name="price" placeholder="Product Price" value="{{ request.GET.price }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="rating" name="rating" placeholder="Product Rating" value="{{ request.GET.rating }}">
+                    </div>
+                    <div class="button" style="margin-left: 20px;">
+                        <input type="submit" value="Filter Product">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="Pro">
+            <div class="table table-bordered">
+                <center>
+                    <table class="table table-bordered" class="tableSection" style=" width: 95%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Image Path</th>
+                                <th>Rating</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody style=" height: 10%;">
+                            {% if SafePesticide %}
+                            {% for i in SafePesticide %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.truncated_description }}</td>
+                                <td>{{ i.price }}</td>
+                                <td>{{ i.truncated_image }}</td>
+                                <td>{{ i.rating }}</td>
+                                <td>
+                                    <center>
+                                        <a href="{% url 'product_update' 'SafePesticide' i.id %}" class="btn btn-primary btn-sm" style="margin-right: 10px; background-color: #ffcc00; color: black;">Update</a>
+                                        <a href="{% url 'product_delete' 'SafePesticide' i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    </center>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="9" style="text-align: center;">No buses found</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>    
+                </center>
+            </div>
+        </section>
+        <br><br>
+        <section >
+            <div class="Product" id="Product">
+                <a href="{% url 'add_product' %}?model=FarmEquipment" class="btn btn-info"  style=" color: white; width: 200px; height: 40px; margin-left: 240px;">Add Farm Equipment</a>
+                <span id="Product">Farm Equipment</span>
+            </div>
+        </section>
+        <section class="ProductFilter_section" id="ProductFilter_section">
+            <div class="ProductFilter" id="ProductFilter">
+                <form method="GET" class="filter" action="{% url 'filter_equipment'%}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="number" id="id" name="id" placeholder="ID" value="{{ request.GET.id }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="name" name="name" placeholder=" Product Name" value="{{ request.GET.name }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="price" name="price" placeholder="Product Price" value="{{ request.GET.price }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="rating" name="rating" placeholder="Product Rating" value="{{ request.GET.rating }}">
+                    </div>
+                    <div class="button" style="margin-left: 20px;">
+                        <input type="submit" value="Filter Product">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="Pro">
+            <div class="table table-bordered">
+                <center>
+                    <table class="table table-bordered" class="tableSection" style=" width: 95%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Image Path</th>
+                                <th>Rating</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody style=" height: 10%;">
+                            {% if FarmEquipment %}
+                            {% for i in FarmEquipment %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.truncated_description }}</td>
+                                <td>{{ i.price }}</td>
+                                <td>{{ i.truncated_image }}</td>
+                                <td>{{ i.rating }}</td>
+                                <td>
+                                    <center>
+                                        <a href="{% url 'product_update' 'FarmEquipment' i.id %}" class="btn btn-primary btn-sm" style="margin-right: 10px; background-color: #ffcc00; color: black;">Update</a>
+                                        <a href="{% url 'product_delete' 'FarmEquipments' i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    </center>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="9" style="text-align: center;">No Product found</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>    
+                </center>
+            </div>
+        </section>
+        <br><br>
+        <section >
+            <div class="Product" id="Product">
+                <a href="{% url 'add_product' %}?model=AnimalFeed" class="btn btn-info"  style=" color: white; width: 200px; height: 40px; margin-left: 240px;">Add Animal Feed</a>
+                <span id="Product">Animal Feed</span>
+            </div>
+        </section>
+        <section class="ProductFilter_section" id="ProductFilter_section">
+            <div class="ProductFilter" id="ProductFilter">
+                <form method="GET" class="filter" action="{% url 'filter_feed' %}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="number" id="id" name="id" placeholder="ID" value="{{ request.GET.id }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="name" name="name" placeholder=" Product Name" value="{{ request.GET.name }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="price" name="price" placeholder="Product Price" value="{{ request.GET.price }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="rating" name="rating" placeholder="Product Rating" value="{{ request.GET.rating }}">
+                    </div>
+                    <div class="button" style="margin-left: 20px;">
+                        <input type="submit" value="Filter Product">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="Pro">
+            <div class="table table-bordered">
+                <center>
+                    <table class="table table-bordered" class="tableSection" style=" width: 95%;">
+                        <thead>
+                            <tr>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Image Path</th>
+                                    <th>Rating</th>
+                                    <th style="text-align: center;">Action</th>
+                                </tr>
+                        </thead>
+                        <tbody style=" height: 10%;">
+                            {% if AnimalFeed %}
+                            {% for i in AnimalFeed %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.truncated_description }}</td>
+                                <td>{{ i.price }}</td>
+                                <td>{{ i.truncated_image }}</td>
+                                <td>{{ i.rating }}</td>
+                                <td>
+                                    <center>
+                                        <a href="{% url 'product_update' 'AnimalFeed' i.id %}" class="btn btn-primary btn-sm" style="margin-right: 10px; background-color: #ffcc00; color: black;">Update</a>
+                                        <a href="{% url 'product_delete' 'AnimalFeed' i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    </center>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="9" style="text-align: center;">No Product found</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>    
+                </center>
+            </div>
+        </section>
+        <br><br>
+        <section >
+            <div class="Product" id="Product">
+                <a href="{% url 'add_product' %}?model=AgriElectronicsTool" class="btn btn-info"  style=" color: white; width: 200px; height: 40px; margin-left: 240px;">Add Agri Tool</a>
+                <span id="Product">Agri Electronics Tool</span>
+            </div>
+        </section>
+        <section class="ProductFilter_section" id="ProductFilter_section">
+            <div class="ProductFilter" id="ProductFilter">
+                <form method="GET" class="filter" action="{% url 'filter_tools'%}">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="number" id="id" name="id" placeholder="ID" value="{{ request.GET.id }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="name" name="name" placeholder=" Product Name" value="{{ request.GET.name }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="price" name="price" placeholder="Product Price" value="{{ request.GET.price }}">
+                    </div>
+                    <p>OR</p>
+                    <div class="field">
+                        <input type="text" id="rating" name="rating" placeholder="Product Rating" value="{{ request.GET.rating }}">
+                    </div>
+                    <div class="button" style="margin-left: 20px;">
+                        <input type="submit" value="Filter Product">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="Pro">
+            <div class="table table-bordered">
+                <center>
+                    <table class="table table-bordered" class="tableSection" style=" width: 95%;">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Image Path</th>
+                                <th>Rating</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody style=" height: 10%;">
+                            {% if AgriElectronicsTool %}
+                            {% for i in AgriElectronicsTool %}
+                            <tr>
+                                <td>{{ i.id }}</td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.truncated_description }}</td>
+                                <td>{{ i.price }}</td>
+                                <td>{{ i.truncated_image }}</td>
+                                <td>{{ i.rating }}</td>
+                                <td>
+                                    <center>
+                                        <a href="{% url 'product_update' 'AgriElectronicsTool' i.id %}" class="btn btn-primary btn-sm" style="margin-right: 10px; background-color: #ffcc00; color: black;">Update</a>
+                                        <a href="{% url 'product_delete' 'AgriElectronicsTool' i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    </center>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="9" style="text-align: center;">No Product found</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>    
+                </center>
+            </div>
+        </section>
+        <br><br>
+        <script>
+            function del(){
+                document.getElementById("delete_product").addEventListener("click", alert("Do you want to delete Records!"));
+            }
+        </script>
+        <footer>
+            <div class="footer-container">
+                <p>&copy; 2024 Bus Management System. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/products_user.css' %}">
+    </head>
+    <body>
+        <div class="contact-info">
+            <img src="{% static 'img/agri1.png' %}" alt="Agri Image">
+            <a href="mailto:agri@info.com">
+                <span>agri@info.com</span>
+            </a>
+        </div>
+        <nav>
+            <div class="left-links">
+            <a style="background-color: rgba(199, 0, 0, 0.793);" >Agri Shop</a>
+            <a href="{% url 'main_user' %}">Home</a>
+            <a href="{%url 'about_user'%}">About Us</a>
+            <a href="{% url 'contact_user'%}">Contact Us</a>
+            <a href="{%url 'profile' request.user.id %}">Profile</a>
+            <a style="background-color: rgba(21, 255, 0, 0.793);" href="#">Products</a>
+            </div>
+            <div>
+            <a id="none1" href="{%url 'cart' %}">
+                    Cart&nbsp;
+                <img src="{% static 'img/shopping_cart.png' %}" alt="Cart" style="width: 30px; height: 25px; vertical-align: middle;">
+            </a>
+            <a id="none2" href="{% url 'logout'%}">Logout</a>
+            </div>
+        </nav>
+        <section class="video-background">
+            <video autoplay muted loop class="background-video">
+                <source src="{% static 'video/section_bg1.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h1>Find Your Products Below !!!</h1>
+        </section>
+        <ul id="shortcut" class="shortcut" style="margin: 20px;">
+            <li><a href="#hqs">High-Quality Seeds</a></li>
+            <li><a href="#of">Organic Fertilizers</a></li>
+            <li><a href="#sp">Safe Pesticides</a></li>
+            <li><a href="#fe">Farm Equipment</a></li>
+            <li><a href="#af">Animal Feed</a></li>
+            <li><a href="#aet">Agri Electronics & Tools</a></li>
+        </ul>
+        <section class="SectionX">
+        <div id="hqs" class="product-container">
+            <h2>High-Quality Seeds</h2>
+            <div class="product-row">
+                {% for seed in seeds %}
+                <div class="product-card">
+                    <img src="{{ seed.image.url }}" alt="{{ seed.name }}">
+                    <h4>{{ seed.name }}</h4>
+                    <a id="buy" href="{% url 'add_to_cart' 'High-Quality Seeds' seed.id %}">Add to Cart</a>
+                    <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ seed.price }}</strong></span></p>
+                    <p>Rating: {{ seed.rating }}</p>
+                    <a href="{% url 'more_info' 'High-Quality Seeds' seed.id %}">More Info</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </section>
+        <section class="SectionY">
+        <div id="of" class="product-container">
+            <h2>Organic Fertilizers</h2>
+            <div class="product-row">
+                {% for fertilizer in fertilizers %}
+                <div class="product-card">
+                    <img src="{{ fertilizer.image.url }}" alt="{{ fertilizer.name }}">
+                    <h4>{{ fertilizer.name }}</h4>
+                    <a id="buy" href="{% url 'add_to_cart' 'Organic Fertilizers' fertilizer.id %}" >Add to Cart</a>
+                    <p>Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ fertilizer.price }}</strong></span></p>
+
+                    <p>Rating: {{ fertilizer.rating }} </p>
+                    <a href="#">More Info</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </section>
+        <section class="SectionX">
+        <div id="sp" class="product-container">
+            <h2>Safe Pesticides</h2>
+            <div class="product-row">
+                {% for pesticide in pesticides %}
+                <div class="product-card">
+                    <img src="{{ pesticide.image.url }}" alt="{{ pesticide.name }}">
+                    <h4>{{ pesticide.name }}</h4>
+                    <a id="buy" href="{% url 'add_to_cart' 'Safe Pesticides' pesticide.id %}" >Add to Cart</a>
+
+                    <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ pesticide.price }}</strong></span></p>
+
+                    <p>Rating: {{ pesticide.rating }}</p>
+                    <a href="#">More Info</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </section>
+        <section class="SectionY">
+        <div id="fe" class="product-container">
+            <h2>Farm Equipment</h2>
+            <div class="product-row">
+                {% for equipment in equipment %}
+                <div class="product-card">
+                    <img src="{{ equipment.image.url }}" alt="{{ equipment.name }}">
+                    <h4>{{ equipment.name }}</h4>
+                    <a id="buy" href="{% url 'add_to_cart' 'Farm Equipment' equipment.id %}" >Add to Cart</a>
+
+                    <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ equipment.price }}</strong></span></p>
+
+                    <p>Rating: {{ equipment.rating }}</p>
+                    <a href="#">More Info</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </section>
+        <section class="SectionX">
+        <div id="af" class="product-container">
+            <h2>Animal Feed</h2>
+            <div class="product-row">
+                {% for feed in feed %}
+                <div class="product-card">
+                    <img src="{{ feed.image.url }}" alt="{{ feed.name }}">
+                    <h4>{{ feed.name }}</h4>
+                    <a id="buy" href="{% url 'add_to_cart' 'Animal Feed' feed.id %}" >Add to Cart</a>
+                    <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ feed.price }}</strong></span></p>
+
+                    <p>Rating: {{ feed.rating }}</p>
+                    <a href="#">More Info</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </section>
+        <section class="SectionY">
+        <div id="aet" class="product-container">
+            <h2>Agri Electronics & Tools</h2>
+            <div class="product-row">
+                {% for electronics_tool in electronics_tools %}
+                <div class="product-card">
+                    <img src="{{ electronics_tool.image.url }}" alt="{{ electronics_tool.name }}">
+                    <h4>{{ electronics_tool.name }}</h4>
+                    <a id="buy" href="{% url 'add_to_cart' 'Agri Electronics & Tools' electronics_tool.id %}" >Add to Cart</a>
+                    <p >Price: <span style="color: rgba(219, 0, 0, 0.804);"><strong>₹{{ electronics_tool.price }}</strong></span></p>
+
+                    <p>Rating: {{ electronics_tool.rating }}</p>
+                    <a href="#">More Info</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </section>
+
+        <footer class="footer">
+            <div>
+                <h3>Contact Us</h3>
+                <p>123 Akurdi<br>Pune, Maharashtra, 12345<br>Email: info@example.com<br>Phone: +123 456 7890</p>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="{% url 'main_user' %}" >Agri Shop</a></li>
+                    <li><a href="{%url 'about_user'%}">About Us</a></li>
+                    <li><a href="{%url 'contact_user'%}" >Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Subscribe to Our Newsletter</h3>
+                <form method="POST" class="newsletter-form" action="{%url 'subscribe_product'%}">
+                    {% csrf_token%}
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </footer>
+    </body>
+</html>

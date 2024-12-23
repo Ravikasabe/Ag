@@ -1,0 +1,153 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d0d0d;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.wrapper {
+    background-color: rgba(0, 0, 0, 0.8);
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 64, 255, 0.3), 0 0 15px rgba(0, 123, 255, 0.5);
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.wrapper:hover {
+    box-shadow: 0 4px 27px rgba(0, 64, 255, 0.423), 0 0 15px rgba(0, 123, 255, 0.571);
+}
+
+.title-text .title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    color: #00ffffb7; 
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-info label {
+    font-size: 18px;
+    color: #ffffff; 
+}
+
+.user-info strong {
+    color: #ff0048; 
+    font-weight: 700;
+    text-shadow: 0 0 10px #ff0077, 0 0 10px #ff0077; 
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    color: #ffffff;
+}
+
+.field input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(0, 64, 255, 0.859); 
+    border-radius: 5px;
+    background-color: rgba(12, 12, 12, 0.462); 
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.field input:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 8px #00ffff; 
+
+}
+.or {
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 0;
+    color: #ffffff;
+    font-weight: 500;
+
+}
+
+.field.btn {
+    text-align: center;
+}
+
+.field.btn input {
+    background-color: #0055ffd1;
+    color: #ffffff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.field.btn input:hover {
+    background-color: #0055ffd1;
+    transform: scale(1.02);
+    box-shadow: 0 0 15px #0055ffd1, 0 0 10px #0055ffd1;
+}
+
+.back-btn {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.back-btn a {
+    text-decoration: none;
+    color: #00ffff; 
+    font-size: 16px;
+    font-weight: 500;
+    text-shadow: 0 0 8px #00ffff;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.back-btn a:hover {
+    color: #ff0077;
+    text-shadow: 0 0 12px #ff0077; 
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 20px;
+    }
+
+    .title-text .title {
+        font-size: 22px;
+    }
+
+    .user-info label {
+        font-size: 16px;
+    }
+}
